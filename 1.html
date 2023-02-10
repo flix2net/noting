@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Movie Embed Page</title>
+    <style>
+      body {
+        background-color: #f1f1f1;
+      }
+
+      #movie-frame {
+        width: 80%;
+        height: 500px;
+        margin: 20px auto;
+        display: block;
+      }
+
+      #movie-id-box {
+        padding: 10px;
+        background-color: lightgray;
+        width: fit-content;
+        margin: 20px 0;
+      }
+
+      #id-input {
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <iframe id="movie-frame" src="https://www.2embed.to/embed/tmdb/movie?id=1"></iframe>
+    <br>
+    <label for="id-input">Enter movie ID:</label>
+    <input type="text" id="id-input" value="1">
+    <button id="next-button">Next</button>
+    <div id="movie-id-box"></div>
+
+    <script>
+      const movieFrame = document.getElementById("movie-frame");
+      const nextButton = document.getElementById("next-button");
+      const idInput = document.getElementById("id-input");
+      const movieIdBox = document.getElementById("movie-id-box");
+      let currentId = 1;
+
+      movieIdBox.innerHTML = `Current Movie ID: ${currentId}`;
+
+      idInput.addEventListener("change", function() {
+        currentId = parseInt(idInput.value);
+        movieFrame.src = `https://www.2embed.to/embed/tmdb/movie?id=${currentId}`;
+        movieIdBox.innerHTML = `Current Movie ID: ${currentId}`;
+      });
+
+      nextButton.addEventListener("click", function() {
+        currentId++;
+        movieFrame.src = `https://www.2embed.to/embed/tmdb/movie?id=${currentId}`;
+        movieIdBox.innerHTML = `Current Movie ID: ${currentId}`;
+      });
+    </script>
+  </body>
+</html>
